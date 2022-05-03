@@ -1,14 +1,36 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
+const ACTIONS = {
+  ADD_DIGIT: 'add-digit',
+  CHOOSE_OPERATION: 'choose-operation',
+  CLEAR: 'CLEAR',
+  DELETE_DIGIT: 'delete_digit',
+  EVALUATE: 'evaluate'
+}
+
+function reducer(state, {type, payload}){
+  switch(type) {
+    case ACTIONs.ADD_DIGIT:
+      return {
+        ...state,
+        currentOperand: `${currentOperand || ""}${payload.digit}`
+      }
+  }
+}
+
 function App() {
+  const [{currentOperand, previousOperand, opeartion}, dispatch] = useReducer(reducer, {})
+
+  dispatch({ type: ACTIONs.ADD_DIGIT, payload: { digit: 1}})
   return (
     <div className="calculator-grid">
       <div className="output">
         <div className="previous-operand">
-          dd
+          {previousOperand} {opeartion}
         </div>
         <div className="current-operand">
-          aa
+          {currentOperand}
         </div>
       </div>
       <button className="span-two">AC</button>
